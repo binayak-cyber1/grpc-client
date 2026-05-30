@@ -7,8 +7,8 @@ server:
 
 grpc:
   client:
-    #host: myapp.demo-cluster.svc.cluster.local  # K8s service name in your kind cluster
-    host: localhost
+    host: myapp-grpc.default.svc.cluster.local  # K8s service name in your kind cluster
+#    host: localhost
     port: 9090
 
 management:
