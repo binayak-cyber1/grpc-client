@@ -24,9 +24,14 @@ public class GrpcClientConfig {
     @Bean
     public ManagedChannel managedChannel() {
         channel = ManagedChannelBuilder
-                .forTarget("dns:///"+grpcHost+":"+grpcPort)
+                .forTarget("dns:///" + grpcHost + ":" + grpcPort)
                 .defaultLoadBalancingPolicy("round_robin")
-                .usePlaintext()  // Use .useTransportSecurity() if TLS is enabled on the server
+                .usePlaintext()
+                .enableRetry()
+                .keepAliveTime(30, TimeUnit.SECONDS)        // ← keep connection alive
+                .keepAliveTimeout(5, TimeUnit.SECONDS)      // ← timeout for keepalive ping
+                .keepAliveWithoutCalls(true)                // ← keep alive even when idle
+                .idleTimeout(5, TimeUnit.MINUTES)           // ← don't drop idle connections
                 .build();
         return channel;
     }
