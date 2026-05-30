@@ -24,4 +24,4 @@ service:
 resources: {}
 
 env:
-  SPRING_PROFILES_ACTIVE: local
+  SPRING_PROFILES_ACTIVE: default
