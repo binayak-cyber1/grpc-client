@@ -10,3 +10,18 @@ grpc:
     #host: myapp.demo-cluster.svc.cluster.local  # K8s service name in your kind cluster
     host: localhost
     port: 9090
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true          # ← enables /liveness and /readiness sub-paths
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8080

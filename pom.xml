@@ -25,6 +25,11 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<!-- ── WebFlux (reactive stack — do NOT add spring-boot-starter-web alongside this) ── -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -8,7 +8,7 @@ RUN mvn clean package -DskipTests
 # Runtime stage
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-COPY --from=builder /build/target/restapt-grpc-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /build/target/grpc-client-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose ports
 EXPOSE 8080
