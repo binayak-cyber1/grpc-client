@@ -1,0 +1,8 @@
+apiVersion: v2
+name: grpc-client
+description: Spring Boot REST and gRPC service
+
+type: application
+
+version: 1.0.0
+appVersion: "1.0.0"
