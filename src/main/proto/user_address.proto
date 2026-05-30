@@ -1,0 +1,74 @@
+syntax = "proto3";
+package com.example.restapt_grpc.grpc;// The Java package for the generated classes
+
+option java_package = "com.example.enterprise_api.grpc";
+
+option java_multiple_files = true; // Generate separate Java files for each message and service
+
+message User {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  Address address = 4;
+}
+
+message Address {
+  string id = 1;
+  string addressLine1 = 2;
+  string addressLine2 = 3;
+  string country = 4;
+  string zip = 5;
+}
+
+message CreateUserRequest {
+  string firstName = 1;
+  string lastName = 2;
+  Address address = 3;
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+}
+
+message UpdateAddressRequest {
+  string userId = 1;
+  Address address = 2;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetAddressRequest {
+  string userId = 1;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message UserListResponse {
+  repeated User users = 1;
+}
+
+message UserResponse {
+  User user = 1;
+}
+
+message AddressResponse {
+  Address address = 1;
+}
+
+message Empty {}
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (UserResponse);
+  rpc GetUser(GetUserRequest) returns (UserResponse);
+  rpc ListUsers(Empty) returns (UserListResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (Empty);
+  rpc UpdateAddress(UpdateAddressRequest) returns (AddressResponse);
+  rpc GetAddress(GetAddressRequest) returns (AddressResponse);
+}
