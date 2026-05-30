@@ -3,7 +3,7 @@ spring:
     name: grpc-client
 
 server:
-  port: 8081
+  port: 8080
 
 grpc:
   client:
