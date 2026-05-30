@@ -24,7 +24,8 @@ public class GrpcClientConfig {
     @Bean
     public ManagedChannel managedChannel() {
         channel = ManagedChannelBuilder
-                .forAddress(grpcHost, grpcPort)
+                .forTarget("dns:///"+grpcHost+":"+grpcPort)
+                .defaultLoadBalancingPolicy("round_robin")
                 .usePlaintext()  // Use .useTransportSecurity() if TLS is enabled on the server
                 .build();
         return channel;
